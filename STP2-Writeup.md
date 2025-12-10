@@ -128,9 +128,12 @@ __nite{test_flag_stp}__
 
 # 3. Cryptography (unfinished)
 
-A filtermaze question by google ctf.
- 
+## Description:
+I have left a key to the chest at the end of the maze.
 
+connect to the instance at : `nc filtermaze.2025.ctfcompetition.com 1337`
+
+ 
 ## Notes:
 
 - This is a three stage solution to solve an LWE problem, (Learning with Errors).
